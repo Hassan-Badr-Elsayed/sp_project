@@ -142,7 +142,7 @@ int main() {
                         if (choice_inner_1 !='y' &&choice_inner_1 != 'Y'&& choice_inner_1 != 'N'&& choice_inner_1 != 'n') {
                             cout<<"Option is incorrect , Please try again "<<endl;
                         }else break;
-                        }
+                    }
                 }while (choice_inner_1== 'y' || choice_inner_1 == 'Y');
             } else if (option==2) {
                 choice = true;
@@ -159,10 +159,10 @@ int main() {
                         if (choice_inner_2 !='y' &&choice_inner_2 != 'Y'&& choice_inner_2 != 'N'&& choice_inner_2 != 'n') {
                             cout<<"Option is incorrect , Please try again "<<endl;
                         }else break;
-                        }
-                    }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
-                }else cout<<"Option is incorrect , Please try again "<<endl;
-            }while(choice==false);
+                    }
+                }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
+            }else cout<<"Option is incorrect , Please try again "<<endl;
+        }while(choice==false);
 
 
 
@@ -181,18 +181,25 @@ int main() {
 
 
 
-
+        bool continueapp=false;
         char answer;
         cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
+        while (true){
         cin>>answer;
         if (answer == 'N' || answer == 'n') {
             cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
             break;
-        }  if (answer == 'Y' || answer == 'y') {
-            continue;
-        } cout<<"Option is incorrect , Please try again "<<endl;
+        } else if (answer == 'Y' || answer == 'y') {
+            continueapp=true;
+            break;
+        }
+        else{
+            cout<<"Option is incorrect , Please try again "<<endl;
+        }
+        }if (continueapp != true) {
+            break;
+        }
     }
-
     SaveData();
     return 0 ;
 }
