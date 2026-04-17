@@ -117,33 +117,52 @@ void FilterMatchesByTeam() {
 
 
 
-int main(){
+int main() {
     LoadData();
-while (true) {
-cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
-cout<<"Press 1 to Sign up."<<endl;
-cout<<"Already a user ? Press 2 to sign in. "<<endl;
-int option;
-bool choice = false;
-do {
-    cin>>option;
-    if (option==1) {
-
-
-
-        choice = true;
-    }else if (option==2) {
-
-
-
-        choice = true;
-    }else cout<<"Option is incorrect , Please try again "<<endl;
-}while(choice==false);
+    while (true) {
+        cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
+        cout<<"Press 1 to Sign up."<<endl;
+        cout<<"Already a user ? Press 2 to sign in. "<<endl;
+        int option;
+        bool choice = false;
+        do {
+            cin>>option;
+            if (option==1) {
+                choice = true;
+                char choice_inner_1 ;
+                do {
 
 
 
 
 
+                    cout<<" Would you you like to stay logged in of your account ? Press Y to stay logged in , Or N to log out"<<"   ";
+                    for (; ; ){
+                        cin>>choice_inner_1;
+                        if (choice_inner_1 !='y' &&choice_inner_1 != 'Y'&& choice_inner_1 != 'N'&& choice_inner_1 != 'n') {
+                            cout<<"Option is incorrect , Please try again "<<endl;
+                        }else break;
+                        }
+                }while (choice_inner_1== 'y' || choice_inner_1 == 'Y');
+            } else if (option==2) {
+                choice = true;
+                char choice_inner_2 ;
+                do {
+
+
+
+
+
+                    cout<<" Would you you like to stay logged in of your account ? Press Y to stay logged in , Or N to log out"<<"   ";
+                    for (; ; ){
+                        cin>>choice_inner_2;
+                        if (choice_inner_2 !='y' &&choice_inner_2 != 'Y'&& choice_inner_2 != 'N'&& choice_inner_2 != 'n') {
+                            cout<<"Option is incorrect , Please try again "<<endl;
+                        }else break;
+                        }
+                    }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
+                }else cout<<"Option is incorrect , Please try again "<<endl;
+            }while(choice==false);
 
 
 
@@ -158,14 +177,22 @@ do {
 
 
 
-char answer;
-cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
-cin>>answer;
-if (answer == 'N' || answer == 'n') {
-    cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
-    break;
-}
-}
+
+
+
+
+
+        char answer;
+        cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
+        cin>>answer;
+        if (answer == 'N' || answer == 'n') {
+            cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
+            break;
+        }  if (answer == 'Y' || answer == 'y') {
+            continue;
+        } cout<<"Option is incorrect , Please try again "<<endl;
+    }
+
     SaveData();
     return 0 ;
 }
