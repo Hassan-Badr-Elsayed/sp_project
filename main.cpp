@@ -119,8 +119,8 @@ void FilterMatchesByTeam() {
 
 int main() {
     LoadData();
+    cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
     while (true) {
-        cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
         cout<<"Press 1 to Sign up."<<endl;
         cout<<"Already a user ? Press 2 to sign in. "<<endl;
         int option;
@@ -153,7 +153,7 @@ int main() {
 
 
 
-                    cout<<" Would you you like to stay logged in of your account ? Press Y to stay logged in , Or N to log out"<<"   ";
+                    cout<<" Would you like to stay logged in to your account ? Press Y to stay logged in , Or N to log out"<<"   ";
                     for (; ; ){
                         cin>>choice_inner_2;
                         if (choice_inner_2 !='y' &&choice_inner_2 != 'Y'&& choice_inner_2 != 'N'&& choice_inner_2 != 'n') {
@@ -161,7 +161,10 @@ int main() {
                         }else break;
                     }
                 }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
-            }else cout<<"Option is incorrect , Please try again "<<endl;
+            }else {  cout<<"Option is incorrect , Please try again "<<endl;
+                cout<<"Press 1 to Sign up."<<endl;
+                cout<<"Already a user ? Press 2 to sign in. "<<endl;
+            }
         }while(choice==false);
 
 
