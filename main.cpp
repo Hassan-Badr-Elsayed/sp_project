@@ -106,7 +106,7 @@ void LoadData() {
 int main(){
     LoadData();
 
-test 1 2 3 ;
+
 
     SaveData();
     return 0 ;
