@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string> 
 using namespace std ;
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Ibrahim :
 struct User{
     string username;
     string password;
@@ -103,11 +105,67 @@ void LoadData() {
         followFile.close();
     }
 }
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Muhammad
+void FollowTeam() {
+
+}
+
+void FilterMatchesByTeam() {
+
+}
+
+
+
 int main(){
     LoadData();
+while (true) {
+cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
+cout<<"Press 1 to Sign up."<<endl;
+cout<<"Already a user ? Press 2 to sign in. "<<endl;
+int option;
+bool choice = false;
+do {
+    cin>>option;
+    if (option==1) {
 
 
 
+        choice = true;
+    }else if (option==2) {
+
+
+
+        choice = true;
+    }else cout<<"Option is incorrect , Please try again "<<endl;
+}while(choice==false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+char answer;
+cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
+cin>>answer;
+if (answer == 'N' || answer == 'n') {
+    cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news of your favorite team."<<endl;
+    break;
+}
+}
     SaveData();
     return 0 ;
 }
