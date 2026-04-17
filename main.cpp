@@ -162,7 +162,7 @@ char answer;
 cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
 cin>>answer;
 if (answer == 'N' || answer == 'n') {
-    cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news of your favorite team."<<endl;
+    cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
     break;
 }
 }
