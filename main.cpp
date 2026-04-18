@@ -122,7 +122,7 @@ int main() {
     cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
     while (true) {
         cout<<"Press 1 to Sign up."<<endl;
-        cout<<"Already a user ? Press 2 to sign in. "<<endl;
+        cout<<"Already have an account ? Press 2 to sign in. "<<endl;
         int option;
         bool choice = false;
         do {
@@ -147,10 +147,23 @@ int main() {
             } else if (option==2) {
                 choice = true;
                 char choice_inner_2 ;
-                do {
+                do { cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
+                    cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
+                    for ( ; ; ){int account_type;
+                    cin>>account_type;
+                    if (account_type==1) {
+                    //user will log in
 
 
+                        break;
+                    }else if (account_type==2) {
+                        //admin log in
 
+                        break;
+                    }else cout<<"Incorrect option , please Try again "<<endl;
+                        cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
+                        cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
+                    }
 
 
                     cout<<" Would you like to stay logged in to your account ? Press Y to stay logged in , Or N to log out"<<"   ";
@@ -163,7 +176,7 @@ int main() {
                 }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
             }else {  cout<<"Option is incorrect , Please try again "<<endl;
                 cout<<"Press 1 to Sign up."<<endl;
-                cout<<"Already a user ? Press 2 to sign in. "<<endl;
+                cout<<"Already have an account ? Press 2 to sign in"<<endl;
             }
         }while(choice==false);
 
