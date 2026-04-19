@@ -129,7 +129,7 @@ void UpdateMatchResult(){
 cout<<"update match results"<<endl;
 bool upcoming = false ;
 cout<<"current upcoming matches"<<endl;
-for ( int i = 0 ; i < matchescount ; i++ ){
+for ( int i = 0 ; i < matchesCount ; i++ ){
 
 if( matches[i].status == "upcoming" ){
 cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;
@@ -155,7 +155,7 @@ cin>>input_team2;
 
 //////////////////// search for the match 
 bool matchfound = false ;
-for ( int i = 0 ; i < matchescount ; i++ ) 
+for ( int i = 0 ; i < matchesCount ; i++ ) 
 {    
 if( matches[i].team1 == input_team1 && matches[i].team2 == input_team2 && matches[i].status == "upcoming" ){   
 cout<<"Match found!"<<endl;
