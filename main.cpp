@@ -109,10 +109,30 @@ void LoadData() {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Muhammad
 void FollowTeam() {
+    
 
 }
 
 void FilterMatchesByTeam() {
+    cout<<"Which team do you want to view their matches ?"<<" ";
+    string ChosenTeam;
+    cin>>ChosenTeam;
+    for (int i = 0; i <19; i++) {
+        if (ChosenTeam==teams[i].name) {
+            for (int j = 0;j<200;j++) {
+                if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
+                    cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
+                    cout<<"Date : "<<matches[j].date<<endl;
+                    cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
+                    cout<<"Status : "<<matches[j].status<<endl;
+                    cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
+                }
+            }break;
+        }
+        cout<<"Invalid team name , please check the team name and try again"<< " ";
+
+    }
+
 
 }
 
