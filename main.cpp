@@ -146,7 +146,53 @@ bool AskToContinue() {
     }
 }
 
+void AdminMenu() {
+    int ChoiceAdmin;
+    cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+    cin>>ChoiceAdmin;
+    /*
+    while(true){
+        if (choice==1){
+            1)fun1()
+         }
+         if (choice==2){
+         2)fun2()
+         }
+           if (choice==3){
+           3)fun3()
+          }
+          if (choice==4){
+            4)logout()
+                break;
+          }
+    }
+    */
 
+}
+
+void UserMenu() {
+    int ChoiceUser;
+    cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+    cin>>ChoiceUser;
+    /*
+    while(true){
+        UserMenu()
+        if (choice==1){
+            1)fun1()
+         }
+         if (choice==2){
+         2)fun2()
+         }
+           if (choice==3){
+           3)fun3()
+          }
+          if (choice==4){
+            4)logout()
+                break;
+          }
+}*/
+
+}
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////Hassan Tarek
 
@@ -354,49 +400,11 @@ int main() {
         else if (option==2) {
             Login();            //handles Sign in
             if (currentUserRole == "admin") {
-                int ChoiceAdmin;
-                cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
-                cin>>ChoiceAdmin;
-                /*
-                while(true){
-                    adminMenu()
-                    if (choice==1){
-                        1)fun1()
-                     }
-                     if (choice==2){
-                     2)fun2()
-                     }
-                       if (choice==3){
-                       3)fun3()
-                      }
-                      if (choice==4){
-                        4)logout()
-                            break;
-                      }
-                }
-                */
+                AdminMenu();
+
             }
             else if (currentUserRole == "user") {
-                int ChoiceUser;
-                cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
-                cin>>ChoiceUser;
-                /*
-                while(true){
-                    UserMenu()
-                    if (choice==1){
-                        1)fun1()
-                     }
-                     if (choice==2){
-                     2)fun2()
-                     }
-                       if (choice==3){
-                       3)fun3()
-                      }
-                      if (choice==4){
-                        4)logout()
-                            break;
-                      }
-            }*/
+                UserMenu();
             }
 
 
