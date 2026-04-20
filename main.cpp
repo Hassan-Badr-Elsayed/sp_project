@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string> 
+#include <conio.h>  // for password 
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
@@ -115,6 +116,198 @@ void FilterMatchesByTeam() {
 
 }
 
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////Hassan Tarek
+
+//////////////////////////////////////// update match result (function definition)
+void UpdateMatchResult(){
+    
+/////////////////////////////////////// print the upcoming matches
+cout<<"update match results"<<endl;
+bool upcoming = false ;
+cout<<"current upcoming matches"<<endl;
+for ( int i = 0 ; i < matchesCount ; i++ ){
+
+if( matches[i].status == "upcoming" ){
+cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         // Error: .time is not in struct 
+upcoming = true ;
+}
+}
+
+if(!upcoming){
+cout<<"there is no upcoming matches :("<<endl;
+return;
+}
+
+
+
+///////////////////// input the two teams
+string input_team1 ;
+string input_team2 ;
+cout<<"enter team 1"<<endl;
+cin>>input_team1;
+cout<<"enter team 2"<<endl;
+cin>>input_team2;
+
+
+//////////////////// search for the match 
+bool matchfound = false ;
+for ( int i = 0 ; i < matchesCount ; i++ ) 
+{    
+if( matches[i].team1 == input_team1 && matches[i].team2 == input_team2 && matches[i].status == "upcoming" ){   
+cout<<"Match found!"<<endl;
+cout<<"Enter final score for "<< matches[i].team1<<endl;
+cin>>matches[i].score1;            
+cout<<"Enter final score for "<< matches[i].team2<<endl;
+cin>>matches[i].score2;
+matches[i].status = "past";             
+cout<<"Match updated successfully!"<<endl;
+matchfound = true;
+break;
+}
+}
+
+if(!matchfound)
+cout <<"Error: Match not found or it is already played.Please check your spelling :)"<< endl;
+
+
+}
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Joe 
+
+string inputPassword() {
+    string password = "";
+    int ch;
+
+    while (true) {
+        ch = _getch();
+
+        if (ch == 13) { // ASCII code for Enter
+            break;
+        }
+        else if (ch == 8) { // ASCII code for Backspace 
+            if (!password.empty()) {
+                password.pop_back();
+                cout << "\b \b"; // **|* -> ** | -> **| 
+            }
+        }
+        else {
+            password += (char)ch;
+            cout << "*";
+        }
+    }
+
+    cout << '\n';
+    return password;
+}
+
+void Register() {
+    User newUser;
+
+    // USERNAME
+    while (true) {
+
+        cout << "Enter username: ";
+        cin >> newUser.username;
+
+        bool validUsername = true;
+        for (int i = 0; i < usersCount; i++) {
+            if (users[i].username == newUser.username) {
+                cout << "Username already exists!\n";
+                validUsername = false;
+                break;
+            }
+        }
+
+        if (validUsername)break;
+    }
+
+
+    // PASSWORD
+    while (true) {
+        cout << "Enter password: ";
+        newUser.password = inputPassword();
+
+        if (newUser.password.length() < 4) {
+            cout << "Password too short!\n";
+        }
+        else {
+            break;
+        }
+    }
+
+
+    // ROLE
+    while (true) {
+
+        cout << "Enter role (admin/user): ";
+        cin >> newUser.role;
+
+        if (newUser.role == "admin" || newUser.role == "user") {
+            break;
+        }
+        cout << "Invalid role!\n";
+    }
+
+    //SAVEUSER
+    if (usersCount >= 100) {
+        cout << "User limit reached!\n";
+        return;
+    }
+    users[usersCount] = newUser;
+    usersCount++;
+
+    cout << "Registered successfully!\n";
+}
+
+void Login() {
+    while (true) {
+
+        string username, password;
+
+        cout << "Enter username: ";
+        cin >> username;
+
+        cout << "Enter password: ";
+        password = inputPassword();
+
+        for (int i = 0; i < usersCount; i++) {
+            if (users[i].username == username && users[i].password == password) {
+
+                currentLoggedInUser = username;
+                currentUserRole = users[i].role;
+
+                cout << "Login successful!\n";
+                cout << "Role: " << currentUserRole << endl;
+                return;
+            }
+        }
+
+        cout << "Invalid username or password!\n";
+
+        char choice;
+        cout << "Try again? (y/n): ";
+        cin >> choice;
+
+        if (choice == 'n' || choice == 'N') {
+            return;
+        }
+    }
+}
+
+void Logout() {
+    currentLoggedInUser = "";
+    currentUserRole = "";
+
+    cout << "Logged out successfully!\n";
+}
 
 
 int main() {
