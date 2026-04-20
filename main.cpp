@@ -176,7 +176,7 @@ void AdminMenu() {
             1)fun1()
          }
          if (choice==2){
-         2)fun2()
+         FilterMatchesByTeam
          }
            if (choice==3){
            3)fun3()
@@ -192,7 +192,7 @@ void AdminMenu() {
 
 void UserMenu() {
     int ChoiceUser;
-    cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+    cout<< "What would you like to do? Press 1 for ...,2 to view only a certain team's matches ,3 for to follow a certain team/teams ,4 to .... ,5...., n to log out"<<endl; // where n is the last option in our app
     cin>>ChoiceUser;
     /*
     while(true){
@@ -200,14 +200,22 @@ void UserMenu() {
         if (choice==1){
             1)fun1()
          }
+
          if (choice==2){
-         2)fun2()
-         }
+            FilterMatchesByTeam
+            }
+
            if (choice==3){
-           3)fun3()
-          }
-          if (choice==4){
-            4)logout()
+            FollowTeam()
+            }
+            .
+            .
+            .
+            ..
+            .
+
+          if (choice==n){
+            logout()
                 break;
           }
 }*/
