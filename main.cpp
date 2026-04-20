@@ -116,8 +116,35 @@ void FilterMatchesByTeam() {
 
 }
 
+int MainMenuOption() {
+    cout<<"Press 1 to Sign up."<<endl;
+    cout<<"Already have an account ? Press 2 to sign in. "<<endl;
+    int result;
+    while (true) {
+        cin>>result;
+        if (result == 1||result==2) {
+            return result;
+        }   cout<<"Incorrect option , please Try again "<<endl;
+        cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
+        cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
+    }
+}
 
-
+bool AskToContinue() {
+    char answer;
+    cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
+    while (true) {
+        cin>>answer;
+        if (answer == 'N' || answer == 'n') {
+            cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
+            return false;
+        }
+        if (answer=='Y' || answer=='y') {
+            return true;
+        }
+        cout<<"Option is incorrect , Please try again "<<endl;
+    }
+}
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -192,10 +219,10 @@ string inputPassword() {
         if (ch == 13) { // ASCII code for Enter
             break;
         }
-        else if (ch == 8) { // ASCII code for Backspace 
+        else if (ch == 8) { // ASCII code for Backspace
             if (!password.empty()) {
                 password.pop_back();
-                cout << "\b \b"; // **|* -> ** | -> **| 
+                cout << "\b \b"; // **|* -> ** | -> **|
             }
         }
         else {
@@ -300,6 +327,8 @@ void Login() {
             return;
         }
     }
+
+
 }
 
 void Logout() {
@@ -309,69 +338,66 @@ void Logout() {
     cout << "Logged out successfully!\n";
 }
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 int main() {
     LoadData();
     cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
     while (true) {
-        cout<<"Press 1 to Sign up."<<endl;
-        cout<<"Already have an account ? Press 2 to sign in. "<<endl;
-        int option;
-        bool choice = false;
-        do {
-            cin>>option;
-            if (option==1) {
-                choice = true;
-                char choice_inner_1 ;
-                do {
+        int option=MainMenuOption();
+        if (option==1) {
+            Register();                    //handle registering
 
 
 
+        }
 
-
-                    cout<<" Would you you like to stay logged in of your account ? Press Y to stay logged in , Or N to log out"<<"   ";
-                    for (; ; ){
-                        cin>>choice_inner_1;
-                        if (choice_inner_1 !='y' &&choice_inner_1 != 'Y'&& choice_inner_1 != 'N'&& choice_inner_1 != 'n') {
-                            cout<<"Option is incorrect , Please try again "<<endl;
-                        }else break;
-                    }
-                }while (choice_inner_1== 'y' || choice_inner_1 == 'Y');
-            } else if (option==2) {
-                choice = true;
-                char choice_inner_2 ;
-                do { cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
-                    cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
-                    for ( ; ; ){int account_type;
-                    cin>>account_type;
-                    if (account_type==1) {
-                    //user will log in
-
-
-                        break;
-                    }else if (account_type==2) {
-                        //admin log in
-
-                        break;
-                    }else cout<<"Incorrect option , please Try again "<<endl;
-                        cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
-                        cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
-                    }
-
-
-                    cout<<" Would you like to stay logged in to your account ? Press Y to stay logged in , Or N to log out"<<"   ";
-                    for (; ; ){
-                        cin>>choice_inner_2;
-                        if (choice_inner_2 !='y' &&choice_inner_2 != 'Y'&& choice_inner_2 != 'N'&& choice_inner_2 != 'n') {
-                            cout<<"Option is incorrect , Please try again "<<endl;
-                        }else break;
-                    }
-                }while (choice_inner_2 == 'y' || choice_inner_2 == 'Y');
-            }else {  cout<<"Option is incorrect , Please try again "<<endl;
-                cout<<"Press 1 to Sign up."<<endl;
-                cout<<"Already have an account ? Press 2 to sign in"<<endl;
+        else if (option==2) {
+            Login();            //handles Sign in
+            if (currentUserRole == "admin") {
+                int ChoiceAdmin;
+                cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+                cin>>ChoiceAdmin;
+                /*
+                while(true){
+                    adminMenu()
+                    if (choice==1){
+                        1)fun1()
+                     }
+                     if (choice==2){
+                     2)fun2()
+                     }
+                       if (choice==3){
+                       3)fun3()
+                      }
+                      if (choice==4){
+                        4)logout()
+                            break;
+                      }
+                }
+                */
             }
-        }while(choice==false);
+            else if (currentUserRole == "user") {
+                int ChoiceUser;
+                cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+                cin>>ChoiceUser;
+                /*
+                while(true){
+                    UserMenu()
+                    if (choice==1){
+                        1)fun1()
+                     }
+                     if (choice==2){
+                     2)fun2()
+                     }
+                       if (choice==3){
+                       3)fun3()
+                      }
+                      if (choice==4){
+                        4)logout()
+                            break;
+                      }
+            }*/
+            }
 
 
 
@@ -381,32 +407,10 @@ int main() {
 
 
 
+            if (AskToContinue()==false) {
+                break;
+            }
 
-
-
-
-
-
-
-
-
-        bool continueapp=false;
-        char answer;
-        cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
-        while (true){
-        cin>>answer;
-        if (answer == 'N' || answer == 'n') {
-            cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
-            break;
-        } else if (answer == 'Y' || answer == 'y') {
-            continueapp=true;
-            break;
-        }
-        else{
-            cout<<"Option is incorrect , Please try again "<<endl;
-        }
-        }if (continueapp != true) {
-            break;
         }
     }
     SaveData();
