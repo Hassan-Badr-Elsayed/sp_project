@@ -110,30 +110,37 @@ void LoadData() {
 //Muhammad
 void FollowTeam() {
     
+    
 
 }
 
 void FilterMatchesByTeam() {
     cout<<"Which team do you want to view their matches ?"<<" ";
     string ChosenTeam;
-    cin>>ChosenTeam;
-    for (int i = 0; i <19; i++) {
-        if (ChosenTeam==teams[i].name) {
-            for (int j = 0;j<200;j++) {
-                if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
-                    cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
-                    cout<<"Date : "<<matches[j].date<<endl;
-                    cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
-                    cout<<"Status : "<<matches[j].status<<endl;
-                    cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
-                }
-            }break;
-        }
-        cout<<"Invalid team name , please check the team name and try again"<< " ";
+    bool TeamExists = false;
+    do{
+        cin>>ChosenTeam;
+            for (int i = 0; i <20; i++) {
+            if (ChosenTeam==teams[i].name) {
+                TeamExists = true;
+                cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
+                for (int j = 0;j<200;j++) {
+                    if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
+                        cout<<"Date : "<<matches[j].date<<endl;
+                        cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
+                        cout<<"Status : "<<matches[j].status<<endl;
+                        if (matches[j].status=="Finished" || matches[j].status=="finished") {
+                            cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
+                        } else cout<<"Match is yet to be played"<<endl;
+                    }
+                }break;
+            }
 
-    }
+        }  if (TeamExists==false) cout<<"Invalid team name , please check the team name and try again"<< " ";
 
 
+
+    }while (TeamExists == false);
 }
 
 int MainMenuOption() {
