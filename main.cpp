@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string> 
+#include <conio.h>  // for password 
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
@@ -132,7 +133,7 @@ cout<<"current upcoming matches"<<endl;
 for ( int i = 0 ; i < matchesCount ; i++ ){
 
 if( matches[i].status == "upcoming" ){
-cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;
+cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         // Error: .time is not in struct 
 upcoming = true ;
 }
 }
@@ -181,32 +182,85 @@ cout <<"Error: Match not found or it is already played.Please check your spellin
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Joe 
 
-void Register() {
-    User newUser;
+string inputPassword() {
+    string password = "";
+    int ch;
 
-    cout << "Enter username: ";
-    cin >> newUser.username;
+    while (true) {
+        ch = _getch();
 
-    // check if username already exists
-    for (int i = 0; i < usersCount; i++) {
-        if (users[i].username == newUser.username) {
-            cout << "Username already exists!\n";
-            return;
+        if (ch == 13) { // ASCII code for Enter
+            break;
+        }
+        else if (ch == 8) { // ASCII code for Backspace 
+            if (!password.empty()) {
+                password.pop_back();
+                cout << "\b \b"; // **|* -> ** | -> **| 
+            }
+        }
+        else {
+            password += (char)ch;
+            cout << "*";
         }
     }
 
-    cout << "Enter password: ";
-    cin >> newUser.password;
+    cout << '\n';
+    return password;
+}
 
-    cout << "Enter role (admin/user): ";
-    cin >> newUser.role;
+void Register() {
+    User newUser;
 
-    // validation
-    if (newUser.role != "admin" && newUser.role != "user") {
-        cout << "Invalid role!\n";
-        return;
+    // USERNAME
+    while (true) {
+
+        cout << "Enter username: ";
+        cin >> newUser.username;
+
+        bool validUsername = true;
+        for (int i = 0; i < usersCount; i++) {
+            if (users[i].username == newUser.username) {
+                cout << "Username already exists!\n";
+                validUsername = false;
+                break;
+            }
+        }
+
+        if (validUsername)break;
     }
 
+
+    // PASSWORD
+    while (true) {
+        cout << "Enter password: ";
+        newUser.password = inputPassword();
+
+        if (newUser.password.length() < 4) {
+            cout << "Password too short!\n";
+        }
+        else {
+            break;
+        }
+    }
+
+
+    // ROLE
+    while (true) {
+
+        cout << "Enter role (admin/user): ";
+        cin >> newUser.role;
+
+        if (newUser.role == "admin" || newUser.role == "user") {
+            break;
+        }
+        cout << "Invalid role!\n";
+    }
+
+    //SAVEUSER
+    if (usersCount >= 100) {
+        cout << "User limit reached!\n";
+        return;
+    }
     users[usersCount] = newUser;
     usersCount++;
 
@@ -214,21 +268,19 @@ void Register() {
 }
 
 void Login() {
-    string username, password;
+    while (true) {
 
-    cout << "Enter username: ";
-    cin >> username;
+        string username, password;
 
-    cout << "Enter password: ";
-    cin >> password;
+        cout << "Enter username: ";
+        cin >> username;
 
-    bool foundUser = false;
+        cout << "Enter password: ";
+        password = inputPassword();
 
-    do {
         for (int i = 0; i < usersCount; i++) {
             if (users[i].username == username && users[i].password == password) {
 
-                foundUser = true;
                 currentLoggedInUser = username;
                 currentUserRole = users[i].role;
 
@@ -240,7 +292,14 @@ void Login() {
 
         cout << "Invalid username or password!\n";
 
-    } while (!foundUser);
+        char choice;
+        cout << "Try again? (y/n): ";
+        cin >> choice;
+
+        if (choice == 'n' || choice == 'N') {
+            return;
+        }
+    }
 }
 
 void Logout() {
