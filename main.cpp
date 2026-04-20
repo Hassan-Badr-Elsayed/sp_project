@@ -178,8 +178,77 @@ cout <<"Error: Match not found or it is already played.Please check your spellin
 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Joe 
 
+void Register() {
+    User newUser;
 
+    cout << "Enter username: ";
+    cin >> newUser.username;
+
+    // check if username already exists
+    for (int i = 0; i < usersCount; i++) {
+        if (users[i].username == newUser.username) {
+            cout << "Username already exists!\n";
+            return;
+        }
+    }
+
+    cout << "Enter password: ";
+    cin >> newUser.password;
+
+    cout << "Enter role (admin/user): ";
+    cin >> newUser.role;
+
+    // validation
+    if (newUser.role != "admin" && newUser.role != "user") {
+        cout << "Invalid role!\n";
+        return;
+    }
+
+    users[usersCount] = newUser;
+    usersCount++;
+
+    cout << "Registered successfully!\n";
+}
+
+void Login() {
+    string username, password;
+
+    cout << "Enter username: ";
+    cin >> username;
+
+    cout << "Enter password: ";
+    cin >> password;
+
+    bool foundUser = false;
+
+    do {
+        for (int i = 0; i < usersCount; i++) {
+            if (users[i].username == username && users[i].password == password) {
+
+                foundUser = true;
+                currentLoggedInUser = username;
+                currentUserRole = users[i].role;
+
+                cout << "Login successful!\n";
+                cout << "Role: " << currentUserRole << endl;
+                return;
+            }
+        }
+
+        cout << "Invalid username or password!\n";
+
+    } while (!foundUser);
+}
+
+void Logout() {
+    currentLoggedInUser = "";
+    currentUserRole = "";
+
+    cout << "Logged out successfully!\n";
+}
 
 
 int main() {
