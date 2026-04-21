@@ -5,6 +5,8 @@
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
+
+// Declaring Structs and Variables 
 struct User{
     string username;
     string password;
@@ -22,6 +24,7 @@ struct Match {
     string team2;
     string date;   
     string status; 
+    string time;
     int score1;   
     int score2;    
 };
@@ -39,6 +42,8 @@ Follow follow[200];
 int followCount = 0 ;
 string currentLoggedInUser = "";
 string currentUserRole = "";
+
+// Defining Functions 
 void SaveData(){
     // Saving Teams 
     ofstream teamFile("teams.txt");
@@ -57,7 +62,7 @@ void SaveData(){
     // Saving Matches 
     ofstream matchFile("matches.txt");
     for (int i = 0; i < matchesCount; i++){
-        matchFile << matches[i].team1 << " " << matches[i].team2 << " " << matches[i].date << " " << matches[i].status << " " << matches[i].score1 << " " << matches[i].score2 << endl; 
+        matchFile << matches[i].team1 << " " << matches[i].team2 << " " << matches[i].date << " " << matches[i].status << " " << matches[i].time << " " << matches[i].score1 << " " << matches[i].score2 << endl; 
     }
     matchFile.close();
 
@@ -91,7 +96,7 @@ void LoadData() {
     // Loading Matches 
     ifstream matchFile("matches.txt");
     if (matchFile.is_open()) {
-        while (matchFile >> matches[matchesCount].team1 >> matches[matchesCount].team2 >> matches[matchesCount].date >> matches[matchesCount].status >> matches[matchesCount].score1 >> matches[matchesCount].score2) {
+        while (matchFile >> matches[matchesCount].team1 >> matches[matchesCount].team2 >> matches[matchesCount].date >> matches[matchesCount].status >> matches[matchesCount].time >>matches[matchesCount].score1 >> matches[matchesCount].score2) {
             matchesCount++;
         }
         matchFile.close();
@@ -109,11 +114,56 @@ void LoadData() {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Muhammad
 void FollowTeam() {
+    cout<<"Please enter the name of the team you want to follow : "<<endl;
+    string TeamName;
+    bool TeamExists=false;
+    do{
+        getline(cin,TeamName);
+        for (int i = 0; i <20; i++) {
+            if (TeamName==teams[i].name) {
+                TeamExists=true;
+                if (followCount<200) {
+                    follow[followCount].username=currentLoggedInUser;
+                    follow[followCount].teamName=TeamName;
+                    followCount++;
+                }
+                cout<<"You are now following "<<" "<<TeamName<<endl;
+            }
+        }
+        if (TeamExists==false) {
+            cout<<"Team doesn't exist , Please make sure you entered the correct name and try again "<<endl;
+        }
 
+
+    }while (TeamExists==false);
 }
-
 void FilterMatchesByTeam() {
+    cout<<"Which team do you want to view their matches ?"<<" ";
+    string ChosenTeam;
+    bool TeamExists = false;
+    do{
+        getline(cin,ChosenTeam);
+            for (int i = 0; i <20; i++) {
+            if (ChosenTeam==teams[i].name) {
+                TeamExists = true;
+                cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
+                for (int j = 0;j<200;j++) {
+                    if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
+                        cout<<"Date : "<<matches[j].date<<endl;
+                        cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
+                        cout<<"Status : "<<matches[j].status<<endl;
+                        if (matches[j].status=="Finished" || matches[j].status=="finished") {
+                            cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
+                        } else cout<<"Match is yet to be played"<<endl;
+                    }
+                }break;
+            }
 
+        }  if (TeamExists==false) cout<<"Invalid team name , please check the team name and try again"<< " ";
+
+
+
+    }while (TeamExists == false);
 }
 
 int MainMenuOption() {
@@ -156,7 +206,7 @@ void AdminMenu() {
             1)fun1()
          }
          if (choice==2){
-         2)fun2()
+         FilterMatchesByTeam
          }
            if (choice==3){
            3)fun3()
@@ -172,7 +222,7 @@ void AdminMenu() {
 
 void UserMenu() {
     int ChoiceUser;
-    cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
+    cout<< "What would you like to do? Press 1 for ...,2 to view only a certain team's matches ,3 for to follow a certain team/teams ,4 to .... ,5...., n to log out"<<endl; // where n is the last option in our app
     cin>>ChoiceUser;
     /*
     while(true){
@@ -180,14 +230,22 @@ void UserMenu() {
         if (choice==1){
             1)fun1()
          }
+
          if (choice==2){
-         2)fun2()
-         }
+            FilterMatchesByTeam
+            }
+
            if (choice==3){
-           3)fun3()
-          }
-          if (choice==4){
-            4)logout()
+            FollowTeam()
+            }
+            .
+            .
+            .
+            ..
+            .
+
+          if (choice==n){
+            logout()
                 break;
           }
 }*/
@@ -206,7 +264,7 @@ cout<<"current upcoming matches"<<endl;
 for ( int i = 0 ; i < matchesCount ; i++ ){
 
 if( matches[i].status == "upcoming" ){
-cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         // Error: .time is not in struct 
+cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         
 upcoming = true ;
 }
 }
