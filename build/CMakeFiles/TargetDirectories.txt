@@ -1,0 +1,3 @@
+C:/Users/ibra_/sp_project/build/CMakeFiles/SP.dir
+C:/Users/ibra_/sp_project/build/CMakeFiles/edit_cache.dir
+C:/Users/ibra_/sp_project/build/CMakeFiles/rebuild_cache.dir
