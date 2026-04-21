@@ -109,17 +109,35 @@ void LoadData() {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Muhammad
 void FollowTeam() {
-    
-    
+    cout<<"Please enter the name of the team you want to follow : "<<endl;
+    string TeamName;
+    bool TeamExists=false;
+    do{
+        getline(cin,TeamName);
+        for (int i = 0; i <20; i++) {
+            if (TeamName==teams[i].name) {
+                TeamExists=true;
+                if (followCount<200) {
+                    follow[followCount].username=currentLoggedInUser;
+                    follow[followCount].teamName=TeamName;
+                    followCount++;
+                }
+                cout<<"You are now following "<<" "<<TeamName<<endl;
+            }
+        }
+        if (TeamExists==false) {
+            cout<<"Team doesn't exist , Please make sure you entered the correct name and try again "<<endl;
+        }
 
+
+    }while (TeamExists==false);
 }
-
 void FilterMatchesByTeam() {
     cout<<"Which team do you want to view their matches ?"<<" ";
     string ChosenTeam;
     bool TeamExists = false;
     do{
-        cin>>ChosenTeam;
+        getline(cin,ChosenTeam);
             for (int i = 0; i <20; i++) {
             if (ChosenTeam==teams[i].name) {
                 TeamExists = true;
