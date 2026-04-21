@@ -246,6 +246,99 @@ void UserMenu() {
 }*/
 
 }
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Youssef 
+
+void AddTeam()
+{
+    //Making sure teams array limit has not been exceeded
+    if (teamsCount >= 20)
+    {
+        cout << "Maximum number of teams already reached." << endl;
+        return;
+    }
+
+    string newTeamName;
+    bool isUnique;
+
+    //Checking if team already exists
+    do 
+    {
+        cout << "Enter new team name: " << endl;
+        cin >> newTeamName;
+        isUnique = true;
+
+        for (int i = 0; i < teamsCount; i++)
+        {
+            if (teams[i].name == newTeamName)
+            {
+                cout << "Team already exists." << endl;
+                isUnique = false;
+            }
+        }
+    } while (isUnique == false);
+
+    teams[teamsCount].name = newTeamName;
+    teams[teamsCount].totalPoints = 0;
+    teams[teamsCount].titles = 0;
+    cout << "Enter the new team's coach's name: ";
+    cin >> teams[teamsCount].coach;
+    teamsCount++;
+
+    cout << "Team " << newTeamName << " added" << endl;
+}
+
+void AddUpcomingMatch()
+{
+    //Making sure matches array limit has not been exceeded
+    if (matchesCount >= 200)
+    {
+        cout << "Maximum number of matches already reached." << endl;
+        return;
+    }
+
+    string teamOne, teamTwo;
+    bool doesExist;
+
+    //Making sure both teams actually exist
+    do
+    {
+        doesExist = true;
+        bool team1Exists = false;
+        bool team2Exists = false;
+
+        cout << "Enter team 1 name:" << endl;
+        cin >> teamOne;
+        cout << "Enter team 2 name:" << endl;
+        cin >> teamTwo;
+
+        for (int i = 0; i < teamsCount; i++)
+        {
+            if (teams[i].name == teamOne)
+                team1Exists = true;
+        }
+        for (int i = 0; i < teamsCount; i++)
+        {
+            if (teams[i].name == teamTwo)
+                team2Exists = true;
+        }
+        if (team1Exists == false || team2Exists == false)
+        {
+            cout << "One or both of the teams does not exist. Please try again." << endl;
+            doesExist = false;
+        }
+
+    } while (doesExist == false);
+
+    matches[matchesCount].team1 = teamOne;
+    matches[matchesCount].team2 = teamTwo;
+    cout << "Enter match date (DD/MM/YYYY): ";
+    cin >> matches[matchesCount].date;
+    matches[matchesCount].status = "upcoming";
+    matches[matchesCount].score1 = 0;
+    matches[matchesCount].score2 = 0;
+    matchesCount++;
+}
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ////Hassan Tarek
 
