@@ -5,6 +5,8 @@
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
+
+// Declaring Structs and Variables 
 struct User{
     string username;
     string password;
@@ -22,6 +24,7 @@ struct Match {
     string team2;
     string date;   
     string status; 
+    string time;
     int score1;   
     int score2;    
 };
@@ -39,6 +42,8 @@ Follow follow[200];
 int followCount = 0 ;
 string currentLoggedInUser = "";
 string currentUserRole = "";
+
+// Defining Functions 
 void SaveData(){
     // Saving Teams 
     ofstream teamFile("teams.txt");
@@ -57,7 +62,7 @@ void SaveData(){
     // Saving Matches 
     ofstream matchFile("matches.txt");
     for (int i = 0; i < matchesCount; i++){
-        matchFile << matches[i].team1 << " " << matches[i].team2 << " " << matches[i].date << " " << matches[i].status << " " << matches[i].score1 << " " << matches[i].score2 << endl; 
+        matchFile << matches[i].team1 << " " << matches[i].team2 << " " << matches[i].date << " " << matches[i].status << " " << matches[i].time << " " << matches[i].score1 << " " << matches[i].score2 << endl; 
     }
     matchFile.close();
 
@@ -91,7 +96,7 @@ void LoadData() {
     // Loading Matches 
     ifstream matchFile("matches.txt");
     if (matchFile.is_open()) {
-        while (matchFile >> matches[matchesCount].team1 >> matches[matchesCount].team2 >> matches[matchesCount].date >> matches[matchesCount].status >> matches[matchesCount].score1 >> matches[matchesCount].score2) {
+        while (matchFile >> matches[matchesCount].team1 >> matches[matchesCount].team2 >> matches[matchesCount].date >> matches[matchesCount].status >> matches[matchesCount].time >>matches[matchesCount].score1 >> matches[matchesCount].score2) {
             matchesCount++;
         }
         matchFile.close();
@@ -352,7 +357,7 @@ cout<<"current upcoming matches"<<endl;
 for ( int i = 0 ; i < matchesCount ; i++ ){
 
 if( matches[i].status == "upcoming" ){
-cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         // Error: .time is not in struct 
+cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         
 upcoming = true ;
 }
 }
