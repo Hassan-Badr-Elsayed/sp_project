@@ -112,145 +112,6 @@ void LoadData() {
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Muhammad
-void FollowTeam() {
-    cout<<"Please enter the name of the team you want to follow : "<<endl;
-    string TeamName;
-    bool TeamExists=false;
-    do{
-        getline(cin,TeamName);
-        for (int i = 0; i <20; i++) {
-            if (TeamName==teams[i].name) {
-                TeamExists=true;
-                if (followCount<200) {
-                    follow[followCount].username=currentLoggedInUser;
-                    follow[followCount].teamName=TeamName;
-                    followCount++;
-                }
-                cout<<"You are now following "<<" "<<TeamName<<endl;
-            }
-        }
-        if (TeamExists==false) {
-            cout<<"Team doesn't exist , Please make sure you entered the correct name and try again "<<endl;
-        }
-
-
-    }while (TeamExists==false);
-}
-void FilterMatchesByTeam() {
-    cout<<"Which team do you want to view their matches ?"<<" ";
-    string ChosenTeam;
-    bool TeamExists = false;
-    do{
-        getline(cin,ChosenTeam);
-            for (int i = 0; i <20; i++) {
-            if (ChosenTeam==teams[i].name) {
-                TeamExists = true;
-                cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
-                for (int j = 0;j<200;j++) {
-                    if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
-                        cout<<"Date : "<<matches[j].date<<endl;
-                        cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
-                        cout<<"Status : "<<matches[j].status<<endl;
-                        if (matches[j].status=="Finished" || matches[j].status=="finished") {
-                            cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
-                        } else cout<<"Match is yet to be played"<<endl;
-                    }
-                }break;
-            }
-
-        }  if (TeamExists==false) cout<<"Invalid team name , please check the team name and try again"<< " ";
-
-
-
-    }while (TeamExists == false);
-}
-
-int MainMenuOption() {
-    cout<<"Press 1 to Sign up."<<endl;
-    cout<<"Already have an account ? Press 2 to sign in. "<<endl;
-    int result;
-    while (true) {
-        cin>>result;
-        if (result == 1||result==2) {
-            return result;
-        }   cout<<"Incorrect option , please Try again "<<endl;
-        cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
-        cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
-    }
-}
-
-bool AskToContinue() {
-    char answer;
-    cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
-    while (true) {
-        cin>>answer;
-        if (answer == 'N' || answer == 'n') {
-            cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
-            return false;
-        }
-        if (answer=='Y' || answer=='y') {
-            return true;
-        }
-        cout<<"Option is incorrect , Please try again "<<endl;
-    }
-}
-
-void AdminMenu() {
-    int ChoiceAdmin;
-    cout<<"What would you like to do? Press 1 for ...,2 for .. ,3 for ..,4 to logout"<<endl;
-    cin>>ChoiceAdmin;
-    /*
-    while(true){
-        if (choice==1){
-            1)fun1()
-         }
-         if (choice==2){
-         FilterMatchesByTeam
-         }
-           if (choice==3){
-           3)fun3()
-          }
-          if (choice==4){
-            4)logout()
-                break;
-          }
-    }
-    */
-
-}
-
-void UserMenu() {
-    int ChoiceUser;
-    cout<< "What would you like to do? Press 1 for ...,2 to view only a certain team's matches ,3 for to follow a certain team/teams ,4 to .... ,5...., n to log out"<<endl; // where n is the last option in our app
-    cin>>ChoiceUser;
-    /*
-    while(true){
-        UserMenu()
-        if (choice==1){
-            1)fun1()
-         }
-
-         if (choice==2){
-            FilterMatchesByTeam
-            }
-
-           if (choice==3){
-            FollowTeam()
-            }
-            .
-            .
-            .
-            ..
-            .
-
-          if (choice==n){
-            logout()
-                break;
-          }
-}*/
-
-}
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Youssef�
 
@@ -267,7 +128,7 @@ void AddTeam()
     bool isUnique;
 
     //Checking if team already exists
-    do�
+    do
     {
         cout << "Enter new team name: " << endl;
         cin >> newTeamName;
@@ -539,6 +400,134 @@ void Logout() {
 // Moaz 
 
 //--------------------------------------------------------------
+//Muhammad
+void FollowTeam() {
+    cout<<"Please enter the name of the team you want to follow : "<<endl;
+    string TeamName;
+    bool TeamExists=false;
+    do{
+        getline(cin,TeamName);
+        for (int i = 0; i <20; i++) {
+            if (TeamName==teams[i].name) {
+                TeamExists=true;
+                if (followCount<200) {
+                    follow[followCount].username=currentLoggedInUser;
+                    follow[followCount].teamName=TeamName;
+                    followCount++;
+                }
+                cout<<"You are now following "<<" "<<TeamName<<endl;
+            }
+        }
+        if (TeamExists==false) {
+            cout<<"Team doesn't exist , Please make sure you entered the correct name and try again "<<endl;
+        }
+
+
+    }while (TeamExists==false);
+}
+void FilterMatchesByTeam() {
+    cout<<"Which team do you want to view their matches ?"<<" ";
+    string ChosenTeam;
+    bool TeamExists = false;
+    do{
+        getline(cin,ChosenTeam);
+            for (int i = 0; i <20; i++) {
+            if (ChosenTeam==teams[i].name) {
+                TeamExists = true;
+                cout<<"Here are the matches of "<<" "<<ChosenTeam<<" "<< ":"<<endl;
+                for (int j = 0;j<200;j++) {
+                    if (ChosenTeam==matches[j].team1 || ChosenTeam==matches[j].team2) {
+                        cout<<"Date : "<<matches[j].date<<endl;
+                        cout<<matches[j].team1 <<" "<<"Vs"<<" "<<matches[j].team2;
+                        cout<<"Status : "<<matches[j].status<<endl;
+                        if (matches[j].status=="Finished" || matches[j].status=="finished") {
+                            cout<<matches[j].score1<<" --"<<matches[j].score2<<endl;
+                        } else cout<<"Match is yet to be played"<<endl;
+                    }
+                }break;
+            }
+
+        }  if (TeamExists==false) cout<<"Invalid team name , please check the team name and try again"<< " ";
+
+
+
+    }while (TeamExists == false);
+}
+
+int MainMenuOption() {
+    cout<<"Press 1 to Sign up."<<endl;
+    cout<<"Already have an account ? Press 2 to sign in. "<<endl;
+    int result;
+    while (true) {
+        cin>>result;
+        if (result == 1||result==2) {
+            return result;
+        }   cout<<"Incorrect option , please Try again "<<endl;
+        cout<<"Are you a user ? Press 1 to sign in to your account"<<endl;
+        cout<<"Are you an admin ? Press 2 to sign in to your account"<<endl;
+    }
+}
+
+bool AskToContinue() {
+    char answer;
+    cout<<"Would you like to continue using the app ? Press Y if yes , N if no "<<"   ";
+    while (true) {
+        cin>>answer;
+        if (answer == 'N' || answer == 'n') {
+            cout<<"Thank you for using our football app !"<<endl<<" Make sure to check again for the lastest news regarding your favorite team."<<endl;
+            return false;
+        }
+        if (answer=='Y' || answer=='y') {
+            return true;
+        }
+        cout<<"Option is incorrect , Please try again "<<endl;
+    }
+}
+
+void AdminMenu() {
+    int ChoiceAdmin;
+    cout<<"What would you like to do? Press 1 to add a team,2 add an upcoming match ,3 Update match results , 4 to logout"<<endl;
+    while(true) {
+        cin>>ChoiceAdmin;
+        if (ChoiceAdmin==1){
+            AddTeam();
+        }
+
+        if (ChoiceAdmin==2){
+            AddUpcomingMatch();
+        }
+        if (ChoiceAdmin==3) {
+            UpdateMatchResult();
+        }
+
+        if (ChoiceAdmin==4){
+            Logout();
+            break;
+        }
+    }
+}
+
+void UserMenu() {
+    int ChoiceUser;
+    cout<< "What would you like to do? Press 1 to follow a team ,2 to view only a certain team's matches ,3 to log out"<<endl;
+    while(true) {
+        cin>>ChoiceUser;
+
+        if (ChoiceUser==1){
+            FollowTeam();
+         }
+
+        if (ChoiceUser==2){
+            FilterMatchesByTeam();
+            }
+
+        if (ChoiceUser==3){
+            Logout();
+            break;
+            }
+    }
+}
+//---------------------
 int main() {
     LoadData();
     cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
@@ -566,7 +555,9 @@ int main() {
 
 
 
-
+        for (int i=0 ; i<99;i++) {
+            cout<<users[i].username<<endl;
+        }
 
 
             if (AskToContinue()==false) {
@@ -576,5 +567,6 @@ int main() {
         }
     }
     SaveData();
+    system("pause");
     return 0 ;
 }
