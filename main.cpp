@@ -641,7 +641,7 @@ void AdminMenu() {
 
 void UserMenu() {
     int ChoiceUser;
-    cout<< "What would you like to do? Press 1 to follow a team ,2 to view only a certain team's matches ,3 to display your favorite match , 4 to log out"<<endl;
+    cout<< "What would you like to do? Press 1 to follow a team ,2 to view only a certain team's matches ,3 to display your currently followed match , 4 to view all games , 5 to view past games , 6 to view upcoming games and 7 to logout"<<endl;
     while(true) {
         cin>>ChoiceUser;
 
@@ -653,9 +653,19 @@ void UserMenu() {
             FilterMatchesByTeam();
             }
         if (ChoiceUser==3) {
-            displayfavmatch();
+            displayfollowedmatch();
         }
-        if (ChoiceUser==4){
+        if (ChoiceUser==4) {
+            Display_All_Matches();
+        }
+        if (ChoiceUser==5) {
+            Display_past_matches();
+        }
+        if (ChoiceUser==6) {
+            Display_upcoming_matches();
+
+        }
+        if (ChoiceUser==7){
             Logout();
             break;
             }
