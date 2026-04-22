@@ -749,9 +749,7 @@ int main() {
 
 
 
-        for (int i=0 ; i<99;i++) {
-            cout<<users[i].username<<endl;
-        }
+
 
 
             if (AskToContinue()==false) {
