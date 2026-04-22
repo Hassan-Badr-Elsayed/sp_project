@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string> 
 #include <conio.h>  // for password 
+#include <iomanip> // for function "setw"
+
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
@@ -111,6 +113,80 @@ void LoadData() {
         followFile.close();
     }
 }
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Hassan Badr
+
+// Display_All_Matches
+void Display_All_Matches()
+{
+    cout << "******************************************************\n";
+    cout << "                     All Matches                      \n";
+    cout << "******************************************************\n\n";
+
+    for (int i = 0; i < matchesCount; i++)
+    {
+        if (matches[i].status == "upcoming" || matches[i].status == "past")
+        {
+            cout << "------------------------------------------------------\n";
+            cout << "           " << setw(15) << matches[i].status << endl;
+            cout << "           " << matches[i].team1 << setw(25) << matches[i].team2 << endl;
+            cout << "           " << setw(3) << matches[i].score1 << setw(24) << matches[i].score2 << endl;
+            cout << "           " << setw(15) << matches[i].time << endl;
+            cout << "           " << setw(17) << matches[i].date << endl;
+            cout << "------------------------------------------------------\n\n";
+
+        }
+    }
+}
+// Display_past_matches
+void Display_past_matches()
+{
+    cout << "******************************************************\n";
+    cout << "                     Past Matches                     \n";
+    cout << "******************************************************\n\n";
+
+    for (int i = 0; i < matchesCount; i++)
+    {
+        if (matches[i].status == "past")
+        {
+            cout << "------------------------------------------------------\n";
+            cout << "           " << setw(15) << matches[i].status << endl;
+            cout << "           " << matches[i].team1 << setw(25) << matches[i].team2 << endl;
+            cout << "           " << setw(3) << matches[i].score1 << setw(24) << matches[i].score2 << endl;
+            cout << "           " << setw(15) << matches[i].time << endl;
+            cout << "           " << setw(17) << matches[i].date << endl;
+            cout << "------------------------------------------------------\n\n";
+        }
+    }
+}
+
+// Display_upcoming_matches
+void Display_upcoming_matches()
+{
+    cout << "******************************************************\n";
+    cout << "                     upcoming Matches                 \n";
+    cout << "******************************************************\n\n";
+
+    for (int i = 0; i < matchesCount; i++)
+    {
+        if (matches[i].status == "upcoming")
+        {
+            cout << "------------------------------------------------------\n";
+            cout << "           " << setw(15) << matches[i].status << endl;
+            cout << "           " << matches[i].team1 << setw(25) << matches[i].team2 << endl;
+            cout << "           " << setw(3) << matches[i].score1 << setw(24) << matches[i].score2 << endl;
+            cout << "           " << setw(15) << matches[i].time << endl;
+            cout << "           " << setw(17) << matches[i].date << endl;
+            cout << "------------------------------------------------------\n\n";
+        }
+    }
+}
+
+
+
+
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Youssef�
@@ -447,37 +523,38 @@ void Logout() {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Moaz
-void displayfavmatch() {
-    string fav[10];
+void displayfollowedmatch() {
+    string followtemp[10];
     int j=0;
     bool flag = false;
-    for (int i = 0; i < followCount; i++) {
+    cout << "\t  Matches for followed teams\n";
+    for (int i = 0; i < followCount; i++) {//loop to store fav teams
         if (currentLoggedInUser==follow[i].username) {
-            fav[j]=follow[i].teamName;
+            followtemp[j]=follow[i].teamName;
             j++;
             flag = true;
         }
     }
     if (flag){
         for (int i = 0; i < matchesCount; i++) {
-            for (int z=0; z<10; z++) {
-                if (matches[i].team1==fav[z]||matches[i].team2==fav[z]) {
-                    cout<<matches[i].team1<<" "<<matches[i].score1<<"\t"<<"v.s\t"<<matches[i].team2<<" "<<matches[i].score2<<endl;
-                    cout<<"\t\t"<<"Date is : "<<matches[i].date;
-                    cout<<"\t\t"<<"Date is : "<<matches[i].time;
-                    cout<<"\t\t"<<"refree is : \n";
+            for (int z=0; z<10; z++) {//loop through matches and display followed  matches only
+                if (matches[i].team1==followtemp[z]||matches[i].team2==followtemp[z]) {
+                    cout<<matches[i].team1<<" "<<matches[i].score1<<"\t"<<"v.s\t"<<matches[i].score2<<matches[i].team2<<endl;
+                    cout<<"\t"<<"Date is : "<<matches[i].date;
+                    cout<<"\t"<<"time is : "<<matches[i].time;
+                    cout<<"\t"<<"stadium is : \n";
                     break;
                 }
             }
         }
-        cout<<"**********************    Feed for fav Teams  *\n";
+        cout<<"**********************    Feed for fav Teams  ****************\n";
         for (int i = 0; i < 10; i++) {
-            for (int z=0; z<20; z++) {//loop through all teams to get favorites
-                 if (fav[i]==teams[z].name) {
+            for (int z=0; z<20; z++) {//loop through all teams to get followed 
+                 if (followtemp[i]==teams[z].name) {//display data
                      cout<<"team name is  "<<teams[z].name<<endl;
                      cout<<"coach name is "<<teams[z].coach<<endl;
                      cout<<"Total points : "<<teams[z].totalPoints<<endl;
-                     if (teams[z].totalPoints==0) cout<<"You have no trophies better luck with coach "<<teams[z].coach<<endl;
+                     if (teams[z].titles==0) cout<<"You have no titles better luck with coach "<<teams[z].coach<<endl;
                      else cout<<"Total titles : "<<teams[z].titles<<endl;
                      break;
                  }
@@ -492,19 +569,17 @@ void gameoftheweek() {//extra function
         cout << "\n[Notice] No matches scheduled yet for the Game of the Week.\n";
         return;
     }
-    int matchhnum=rand()%matchesCount;
+    int matchhnum=rand()%matchesCount;//generate match random as match of the week
     cout << "\n******************************************" << endl;
     cout << "        🏆 GAME OF THE WEEK 🏆            " << endl;
     cout << "******************************************" << endl;
     cout<<matches[matchhnum].team1<<" "<<matches[matchhnum].score1<<"\t"<<"v.s\t"<<matches[matchhnum].team2<<" "<<matches[matchhnum].score2<<endl;
-    cout<<"\t\t"<<"status is : "<<matches[matchhnum].status<<endl;
-    cout<<"\t\t"<<"Date is : "<<matches[matchhnum].date<<endl;
-    cout<<"\t\t"<<"stadium is : \n";
-    cout<<"\t\t"<<"refree is : \n";
+    cout<<"\t"<<"status is : "<<matches[matchhnum].status<<endl;
+    cout<<"\t"<<"Date is : "<<matches[matchhnum].date<<endl;
+    cout<<"\t"<<"stadium is : \n";
+    cout<<"\t"<<"refree is : \n";
     cout << "******************************************" << endl;
 }
-//--------------------------------------------------------------
-
 //--------------------------------------------------------------
 //Muhammad
 void FollowTeam() {
@@ -615,7 +690,7 @@ void AdminMenu() {
 
 void UserMenu() {
     int ChoiceUser;
-    cout<< "What would you like to do? Press 1 to follow a team ,2 to view only a certain team's matches ,3 to display your favorite match , 4 to log out"<<endl;
+    cout<< "What would you like to do? Press 1 to follow a team ,2 to view only a certain team's matches ,3 to display your currently followed match , 4 to view all games , 5 to view past games , 6 to view upcoming games and 7 to logout"<<endl;
     while(true) {
         cin>>ChoiceUser;
 
@@ -627,15 +702,25 @@ void UserMenu() {
             FilterMatchesByTeam();
             }
         if (ChoiceUser==3) {
-            displayfavmatch();
+            displayfollowedmatch();
         }
-        if (ChoiceUser==4){
+        if (ChoiceUser==4) {
+            Display_All_Matches();
+        }
+        if (ChoiceUser==5) {
+            Display_past_matches();
+        }
+        if (ChoiceUser==6) {
+            Display_upcoming_matches();
+
+        }
+        if (ChoiceUser==7){
             Logout();
             break;
             }
     }
 }
-//---------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 int main() {
     LoadData();
     cout<<"Welcome to CounterAttack , The number 1 app for all Football team  news regarding your favorite teams and world-wide football"<<endl;
