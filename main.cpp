@@ -3,7 +3,7 @@
 #include <string> 
 #include <conio.h>  // for password 
 #include <iomanip> // for function "setw"
-
+#include <limits> //for cin.ignore()
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Ibrahim :
@@ -360,6 +360,7 @@ string input_team1 ;
 string input_team2 ;
 
 cout<<"enter team 1"<<endl;
+cin.ignore(numeric_limits<streamsize>::max(),'\n');
 getline(cin, input_team1);
 
 cout<<"enter team 2"<<endl;
