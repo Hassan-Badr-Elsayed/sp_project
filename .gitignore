@@ -3,3 +3,4 @@ out/
 build/
 *.exe
 *.obj
+.vs/
