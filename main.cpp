@@ -3,6 +3,7 @@
 #include <string> 
 #include <conio.h>  // for password 
 #include <iomanip> // for function "setw"
+#include <limits>   //for user input more than the amount needed
 
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -588,6 +589,7 @@ void FollowTeam() {
     cout<<"Please enter the name of the team you want to follow : "<<endl;
     string TeamName;
     bool TeamExists=false;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     do{
         getline(cin,TeamName);
         for (int i = 0; i <20; i++) {
@@ -612,6 +614,7 @@ void FilterMatchesByTeam() {
     cout<<"Which team do you want to view their matches ?"<<" ";
     string ChosenTeam;
     bool TeamExists = false;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     do{
         getline(cin,ChosenTeam);
             for (int i = 0; i <20; i++) {
