@@ -337,52 +337,54 @@ void AddUpcomingMatch()
 void UpdateMatchResult(){
     
 /////////////////////////////////////// print the upcoming matches
-cout<<"update match results"<<endl;
-bool upcoming = false ;
-cout<<"current upcoming matches"<<endl;
-for ( int i = 0 ; i < matchesCount ; i++ ){
+    cout<<"update match results"<<endl;
+    bool upcoming = false ;
+    cout<<"current upcoming matches"<<endl;
+      for ( int i = 0 ; i < matchesCount ; i++ ){
 
-if( matches[i].status == "upcoming" ){
-cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         
-upcoming = true ;
-}
-}
+        if( matches[i].status == "upcoming" ){
+            cout<<matches[i].team1<<" "<<matches[i].team2<<" "<<matches[i].date<<" "<<matches[i].time<<endl;         
+              upcoming = true ;
+        }
+    }
 
-if(!upcoming){
-cout<<"there is no upcoming matches :("<<endl;
-return;
-}
+  if(!upcoming){
+    cout<<"there is no upcoming matches :("<<endl;
+      return;
+  }
 
 
 
 ///////////////////// input the two teams
 string input_team1 ;
 string input_team2 ;
+
 cout<<"enter team 1"<<endl;
-cin>>input_team1;
+getline(cin, input_team1);
+
 cout<<"enter team 2"<<endl;
-cin>>input_team2;
+getline(cin, input_team2);
 
 
 //////////////////// search for the match 
 bool matchfound = false ;
-for ( int i = 0 ; i < matchesCount ; i++ ) 
-{    
-if( matches[i].team1 == input_team1 && matches[i].team2 == input_team2 && matches[i].status == "upcoming" ){   
-cout<<"Match found!"<<endl;
-cout<<"Enter final score for "<< matches[i].team1<<endl;
-cin>>matches[i].score1;            
-cout<<"Enter final score for "<< matches[i].team2<<endl;
-cin>>matches[i].score2;
-matches[i].status = "past";             
-cout<<"Match updated successfully!"<<endl;
-matchfound = true;
-break;
-}
-}
+    for ( int i = 0 ; i < matchesCount ; i++ ){  
 
-if(!matchfound)
-cout <<"Error: Match not found or it is already played.Please check your spelling :)"<< endl;
+        if( matches[i].team1 == input_team1 && matches[i].team2 == input_team2 && matches[i].status == "upcoming" ){   
+          cout<<"Match found!"<<endl;
+          cout<<"Enter final score for "<< matches[i].team1<<endl;
+          cin>>matches[i].score1;            
+          cout<<"Enter final score for "<< matches[i].team2<<endl;
+          cin>>matches[i].score2;
+          matches[i].status = "past";             
+          cout<<"Match updated successfully!"<<endl;
+          matchfound = true;
+          break;
+        }
+    }
+
+    if(!matchfound)
+    cout <<"Error: Match not found or it is already played.Please check your spelling :)"<< endl;
 
 
 }
