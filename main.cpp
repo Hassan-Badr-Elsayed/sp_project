@@ -3,7 +3,7 @@
 #include <string> 
 #include <conio.h>  // for password 
 #include <iomanip> // for function "setw"
-#include <limits>   //for user input more than the amount needed
+#include <limits>   //for user input more than the amount needed 
 
 using namespace std ;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -350,8 +350,10 @@ void UpdateMatchResult(){
     }
 
   if(!upcoming){
+
     cout<<"there is no upcoming matches :("<<endl;
-      return;
+    return;
+
   }
 
 
@@ -370,19 +372,64 @@ getline(cin, input_team2);
 
 //////////////////// search for the match 
 bool matchfound = false ;
+
     for ( int i = 0 ; i < matchesCount ; i++ ){  
 
-        if( matches[i].team1 == input_team1 && matches[i].team2 == input_team2 && matches[i].status == "upcoming" ){   
+        if (((matches[i].team1 == input_team1 && matches[i].team2 == input_team2) || 
+
+        (matches[i].team1 == input_team2 && matches[i].team2 == input_team1)) && 
+
+        matches[i].status == "upcoming"){
+
           cout<<"Match found!"<<endl;
           cout<<"Enter final score for "<< matches[i].team1<<endl;
-          cin>>matches[i].score1;            
+          cin>>matches[i].score1;    
+
           cout<<"Enter final score for "<< matches[i].team2<<endl;
           cin>>matches[i].score2;
-          matches[i].status = "past";             
+
+          matches[i].status = "past";  
+          
+            if (matches[i].score1 > matches[i].score2){  /////////// Team 1 wins
+
+
+              for (int j = 0; j < teamsCount; j++) {
+
+                if (teams[j].name == matches[i].team1) 
+                teams[j].totalPoints += 3;
+
+                }
+            } 
+            else if (matches[i].score2 > matches[i].score1){ /////////// Team 2 wins
+    
+                for (int j = 0; j < teamsCount; j++){
+
+                  if (teams[j].name == matches[i].team2) 
+                  teams[j].totalPoints += 3;
+    
+                }   
+            }
+
+            else { /////////// draw
+
+               for (int j = 0; j < teamsCount; j++){
+
+                 if (teams[j].name == matches[i].team1)
+                   teams[j].totalPoints += 1;
+
+                 if (teams[j].name == matches[i].team2)
+                   teams[j].totalPoints += 1;
+
+               }
+            }
+
+
           cout<<"Match updated successfully!"<<endl;
           matchfound = true;
           break;
+
         }
+
     }
 
     if(!matchfound)
