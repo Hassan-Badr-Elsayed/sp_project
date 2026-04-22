@@ -188,6 +188,25 @@ void AddUpcomingMatch()
         //Making sure both teams actually exist
         do
         {
+            char addchoice;
+
+            if (teamsCount < 2)
+            {
+                cout << "You can't schedule a match with less than two teams! Would you like to add teams? (y/n)" << endl;
+                cin >> addchoice;
+                if (addchoice == 'Y' || addchoice == 'y')
+                    AddTeam();
+                else
+                    return;
+            }
+
+            cout << "Would you like to add teams before scheduling a match? (y/n)" << endl;
+            cin >> addchoice;
+            if (addchoice == 'Y' || addchoice == 'y')
+                AddTeam();
+
+            cin.ignore(1000, '\n');
+
             doesExist = true;
             bool team1Exists = false;
             bool team2Exists = false;
@@ -207,9 +226,14 @@ void AddUpcomingMatch()
                 if (teams[i].name == teamTwo)
                     team2Exists = true;
             }
-            if (team1Exists == false || team2Exists == false)
+            if (team1Exists == false)
             {
-                cout << "One or both of the teams does not exist. Please try again." << endl;
+                cout << "Team 1 does not exist!" << endl;
+                doesExist = false;
+            }
+            if (team2Exists == false)
+            {
+                cout << "Team 2 does not exist!" << endl;
                 doesExist = false;
             }
 
