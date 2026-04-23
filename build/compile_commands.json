@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/ibra_/sp_project/build",
-  "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++14 -o CMakeFiles\\SP.dir\\main.cpp.obj -c C:\\Users\\ibra_\\sp_project\\main.cpp",
-  "file": "C:/Users/ibra_/sp_project/main.cpp",
-  "output": "CMakeFiles/SP.dir/main.cpp.obj"
-}
-]
